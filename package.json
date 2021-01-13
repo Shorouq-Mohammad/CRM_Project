@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^12.6.0",
     "axios": "^0.21.1",
     "chart.js": "^2.9.4",
+    "elevation-pr": "^2.1.0",
     "mobx": "^6.0.4",
     "mobx-react": "^7.0.5",
     "moment": "^2.29.1",
@@ -32,7 +33,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "review": "node node_modules/elevation-pr/index.js"
   },
   "eslintConfig": {
     "extends": [
