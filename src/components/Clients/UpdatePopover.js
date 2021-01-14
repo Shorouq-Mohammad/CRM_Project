@@ -16,7 +16,7 @@ function UpdatePopover(props) {
 
     const update = async () => {
         const { first, last, countryId, country } = client
-        if(first && last && country){
+        if(first && last && countryId){
             const response  = await props.ClientsStore.updateClient(id, first, last, countryId)
             handleClose()
             const {text, variant} = (response && response.stack && response.message) ? {text:`Oops, The Client wasn't updated`, variant: 'error'} : {text: response, variant: 'success'}
@@ -31,9 +31,8 @@ function UpdatePopover(props) {
         setClient({...client, [id]: value})
     }
 
-    const updateSelect = (event) => {
-        setClient({...client, countryId: event.value})
-    }
+    const updateSelect = (event) => setClient({...client, countryId: event ? event.value : null})
+    
 
     const options = props.ClientsStore.countries.map(c => { return {label: c.country, value: c.id} })
 

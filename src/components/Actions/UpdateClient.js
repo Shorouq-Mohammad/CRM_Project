@@ -18,6 +18,7 @@ function UpdateClient(props) {
         }
         if(response && response.stack && response.message){//if error
             enqueueSnackbar('Oops, The move was not done', { variant: 'error'})
+
         }else{
             enqueueSnackbar(response, { variant: 'success'})
         }
@@ -30,11 +31,12 @@ function UpdateClient(props) {
      
     const declareSale = async () => {
         const response = await props.ClientsStore.declareSale(client.id)
+        !(response && response.stack && response.message) && setClient({...client, sold: true})
         chooseSnackbar(response, true)
     }
 
     const sendEmail = async () =>{
-        const response = emailType && await props.ClientsStore.sendEmail(client.id, emailType.emailTypeId)
+        const response = await props.ClientsStore.sendEmail(client.id, emailType.emailTypeId)
         chooseSnackbar(response, emailType.emailTypeId)
     }
 
@@ -66,7 +68,7 @@ function UpdateClient(props) {
                 {client.id && <>
                 <Select 
                     options={ownerOptions} 
-                    onChange={(event) => setOwner({owner:event.label , ownerId: event.value})} 
+                    onChange={(event) => setOwner(event ? {owner:event.label , ownerId: event.value} : {...owner, owner: null})} 
                     isClearable="true" id="selectOwner" 
                     placeholder= "Select Owner"
                     defaultValue={{label: owner.owner, value: owner.ownerId}}
@@ -77,7 +79,7 @@ function UpdateClient(props) {
                 </Button>
                 <Select 
                     options={emailTypesOptions} 
-                    onChange={(event) => setEmailType({emailTypeId: event.value})} 
+                    onChange={(event) => setEmailType(event ? {emailTypeId: event.value} : {emailTypeId: null})} 
                     isClearable="true" id="selectEmail" 
                     placeholder= "Select Email Type"
                 />

@@ -15,9 +15,11 @@ function SalesSortedBy(props) {
     ]
 
     const handleChange = (event) => {
-      const {label, value} = event
-      setOption({label, value})
-      setFilteredData(props.ClientsStore[`group${label}`])
+      if(event){
+        const {label, value} = event
+        setOption({label, value})
+        setFilteredData(props.ClientsStore[`group${label}`])
+      }
     }
 
     let data = {

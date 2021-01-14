@@ -48,13 +48,13 @@ function AddClient(props) {
             />
             <Select 
                 options={countryOptions} 
-                onChange={(event) => setCountry({countryId: event.value, country: event.label})} 
+                onChange={(event) => setCountry(event ? {countryId: event.value, country: event.label} : {...country, countryId: -1})} 
                 isClearable="true" id="selectCountry" 
                 placeholder= "Select Country"
             />
             <Select 
                 options={ownerOptions} 
-                onChange={(event) => setOwner({ownerId: event.value, owner: event.label})} 
+                onChange={(event) => setOwner(event ? {ownerId: event.value, owner: event.label} : {...owner, ownerId: -1})} 
                 isClearable="true" id="selectOwner" 
                 placeholder= "Select Owner"
             />

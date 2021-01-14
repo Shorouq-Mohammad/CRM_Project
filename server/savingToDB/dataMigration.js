@@ -13,23 +13,23 @@ let emailTypes = Object.keys(data.reduce((total, c)=>{
     return total
 }, {}))
 
-const nullIndex = emailTypes.findIndex(e => e === 'null')
-emailTypes.splice(nullIndex, 1)
+// const nullIndex = emailTypes.findIndex(e => e === 'null')
+// emailTypes.splice(nullIndex, 1)
 
 const addValue = async function (table, type) {
-    let query =`INSERT INTO ${table} VALUES (null, '${type}')`
+    let query = type === 'null' ? `INSERT INTO ${table} VALUES (null, null)` : `INSERT INTO ${table} VALUES (null, '${type}')`
     let result = await sequelize.query(query)
     return result[0]
 }
 
 const findByID = async (table, name, value) => {
-    let query = `SELECT id FROM ${table} WHERE ${name} = "${value}"`
+    let query = value === null ? `SELECT id FROM ${table} WHERE ${name} IS NULL` : `SELECT id FROM ${table} WHERE ${name} = "${value}"`
     let results = await sequelize.query(query)
     return results[0][0].id
 }
 
-const addClient = async (client) => { // 14 is the null index in my email_type table
-    let emailType = client.emailType !== null ? await findByID('email_type', 'email_type', client.emailType) : 14
+const addClient = async (client) => { 
+    let emailType = await findByID('email_type', 'email_type', client.emailType) 
     let owner = await findByID('owner', 'owner', client.owner)
     let country = await findByID('country', 'country', client.country)
     let date = new Date (client.firstContact).toLocaleDateString()

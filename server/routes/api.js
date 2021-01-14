@@ -23,7 +23,7 @@ router.get('/dbData', async (req, res) => {
         const clients = (await sequelize.query(query))[0] 
         const owners = (await sequelize.query('SELECT * FROM owner'))[0]   
         const countries = (await sequelize.query('SELECT * FROM country'))[0]
-        const emailTypes = (await sequelize.query('SELECT * FROM email_type'))[0]
+        const emailTypes = (await sequelize.query('SELECT * FROM email_type WHERE email_type IS NOT NULL'))[0]
         res.send([owners, countries, emailTypes, clients])
     } catch (error) {
         res.sendStatus(error)
@@ -76,11 +76,11 @@ router.get('/categorizedData', async (req, res) => {
     }
 })
 
-router.post('/client', async (req, res) => { 
+router.post('/client', async (req, res) => {  // 2 is the id of email_type row which is equal to null
     try {
         const {first, last, country, owner, date} = req.body
         const query = `INSERT INTO client
-        VALUES (null, '${last}', '${first}', null, 0, '${date}', 14, ${owner}, ${country})`
+        VALUES (null, '${last}', '${first}', null, 0, '${date}', 2, ${owner}, ${country})`
         const client = await sequelize.query(query)
         res.send(client)    
     } catch (error) {

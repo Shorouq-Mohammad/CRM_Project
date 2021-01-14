@@ -72,7 +72,7 @@ function Clients(props) {
                 />
                 <Select 
                     options={searchOptions} 
-                    onChange={({label, value}) => setOption({label, value})} 
+                    onChange={(event) => event && setOption({label: event.label, value: event.value})} 
                     isClearable="true" id="selectSearchOption" 
                     placeholder= "Select Search Category"
                     defaultValue={option}
