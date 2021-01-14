@@ -1,6 +1,6 @@
 # CRM 🏢
 
-<img src="./analytics.png" width="70%"/>
+<img src="./analytics.png" width="90%"/>
 
 **Customer Relationship Management** tool that allows companies to manage everything to-do with their customers. 🏢👨👩
 
@@ -19,16 +19,18 @@ Show clients in **DataGrid** table with pagination (20 clients per page). The us
 
 The user can look for Client and update his/her owner, send email, and declare sale (if the client hasn't been sold before) 
 
-
-<img src="./actionUpdate.gif" width="70%"/>
-<img src="./actionAdd.gif" width="70%"/>
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap:2vw;">
+    <img src="./actionUpdate.gif" width="40%"/>
+    
+    <img src="./actionAdd.gif" width="40%"/>
+</div
 
 ### 📊 Analytics Dashboard 📈📉
 
 This page contain multiple Badges and charts.
 
 <img src="./analytics.png" width="70%"/>
-<img src="./salesBy.gif" width="70%"/>
+<img src="./salesBy.gif" width="50%"/>
 
 ## 💻 Technology used
 
