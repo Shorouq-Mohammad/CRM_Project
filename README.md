@@ -20,7 +20,7 @@ Show clients in **DataGrid** table with pagination (20 clients per page). The us
 The user can look for Client and update his/her owner, send email, and declare sale (if the client hasn't been sold before) 
 
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap:2vw;">
-    <img src="./actionUpdate.gif" width="40%" style="margin: 10px;"/>
+    <img src="./actionUpdate.gif" width="40%" style="margin: 30px ;"/>
     <img src="./actionAdd.gif" width="40%"/>
 </div
 
